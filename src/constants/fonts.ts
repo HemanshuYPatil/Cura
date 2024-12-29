@@ -10,4 +10,4 @@ export const dmSans = Plus_Jakarta_Sans({
     variable: "--font-dmsans",
 });
 
-// ddd
+// ddddd
