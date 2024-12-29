@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,8 @@ const SignUpPage = () => {
     const { isLoaded, signUp, setActive } = useSignUp();
 
     const [name, setName] = useState<string>("");
+    const [last, setlast] = useState<string>("");
+
     const [email, setEmail] = useState<string>("");
     const [code, setCode] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -27,9 +29,10 @@ const SignUpPage = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isVerifying, setIsVerifying] = useState<boolean>(false);
 
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+        
         if (!isLoaded) return;
 
         if (!name || !email || !password) {
@@ -37,14 +40,14 @@ const SignUpPage = () => {
             return;
         }
 
+        
         setIsLoading(true);
-
+        // const [firstName, lastName = ""] = name.split(" ");
         try {
             await signUp.create({
                 emailAddress: email,
                 password,
-                firstName: name.split(" ")[0],
-                lastName: name.split(" ")[1] || "",
+                
             });
 
             await signUp.prepareEmailAddressVerification({
@@ -52,6 +55,11 @@ const SignUpPage = () => {
             });
 
             setIsVerified(true);
+
+            await signUp.update({
+                firstName: name,
+                lastName: last,
+            })
         } catch (error: any) {
             console.log(JSON.stringify(error, null, 2));
 
@@ -179,15 +187,28 @@ const SignUpPage = () => {
             <form onSubmit={handleSubmit} className="w-full max-w-xs">
                 <div className="space-y-1">
                     <Label htmlFor="name">
-                        Full Name
+                        First Name
                     </Label>
                     <Input
                         id="name"
                         type="text"
-                        placeholder="Enter your name"
+                        placeholder="eg :- Hemanshu"
                         value={name}
                         disabled={isLoading}
                         onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <div className="space-y-1 mt-4">
+                    <Label htmlFor="name">
+                        Last Name
+                    </Label>
+                    <Input
+                        id="last"
+                        type="text"
+                        placeholder="eg :- Patil"
+                        value={last}
+                        disabled={isLoading}
+                        onChange={(e) => setlast(e.target.value)}
                     />
                 </div>
                 <div className="mt-4 space-y-1">
@@ -231,6 +252,7 @@ const SignUpPage = () => {
                         </Button>
                     </div>
                 </div>
+                <div id="clerk-captcha" />
                 <div className="mt-6">
                     <Button
                         type="submit"

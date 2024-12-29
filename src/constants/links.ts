@@ -21,11 +21,11 @@ export const LINKS = [
         href: "/dashboard/summary",
         icon: StethoscopeIcon,
     },
-    {
-        label: "AI Chat",
-        href: "/dashboard/ai",
-        icon: BotIcon,
-    },
+    // {
+    //     label: "AI Chat",
+    //     href: "/dashboard/ai",
+    //     icon: BotIcon,
+    // },
     {
         label: "Settings",
         href: "/dashboard/account/settings",

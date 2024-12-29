@@ -85,10 +85,10 @@ model User {
   gender        String?
   bloodGroup    String?
   medicalIssues String?
+  ProPlan       Boolean  @default(false)
 
   stripeCustomerId String? @map(name: "stripe_customer_id")
   stripeInvoiceId  String? @map(name: "stripe_invoice_id")
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

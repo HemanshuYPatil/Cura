@@ -30,11 +30,11 @@ const createCheckoutSession = async () => {
             line_items: [
                 {
                     price_data: {
-                        currency: "usd",
+                        currency: "inr",
                         product_data: {
                             name: "Cura Pro Subscription",
                         },
-                        unit_amount: 900,
+                        unit_amount: 79900,
                     },
                     quantity: 1,
                 }

@@ -12,7 +12,7 @@ const BillingPage = async () => {
         },
     });
 
-    const isPro = dbUser?.stripeCustomerId ? true : false;
+    const isPro = dbUser?.ProPlan;
 
     return (
         <div className="flex flex-col items-start justify-start w-full max-w-3xl py-8 mx-auto">

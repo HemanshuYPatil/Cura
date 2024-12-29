@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
 const isPublicRoute = createRouteMatcher(["/", "(auth)(.*)"]);
 
-export default clerkMiddleware((auth, req) => {
-    const { userId } = auth();
+export default clerkMiddleware(async (auth, req) => {
+    const { userId } = await auth();
 
     if (isPublicRoute(req)) {
         return NextResponse.next();

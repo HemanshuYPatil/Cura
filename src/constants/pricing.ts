@@ -27,7 +27,7 @@ export const PLANS = [
     {
         name: "Pro",
         info: "Get the best of Cura",
-        price: 9,
+        price: 799,
         features: [
             {
                 text: "Advanced health tracking",
